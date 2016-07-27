@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace ByteRibbon
 { 
@@ -35,7 +34,7 @@ namespace ByteRibbon
         /// The program memory pointer.
         /// </summary>
         private int memoryPointer;
-        
+
         /// <summary>
         /// Initialises a new instance of a Turing machine set to execute the specified program.
         /// </summary>
@@ -52,27 +51,11 @@ namespace ByteRibbon
         }
 
         /// <summary>
-        /// Moves the memory pointer to the next cell.
-        /// </summary>
-        private void next()
-        {
-            memoryPointer++;
-        }
-
-        /// <summary>
-        /// Moves the memory pointer to the previous cell.
-        /// </summary>
-        private void previous()
-        {
-            memoryPointer--;
-        }
-
-        /// <summary>
         /// Jumps the program pointer to a matching character.
         /// </summary>
         /// <param name="forward">Whether or not to jump the pointer forward.</param>
         /// <param name="tokens">The tokens and their jump values.</param>
-        private void jump(bool forward, Dictionary<TokenType, int> tokens)
+        private void Jump(bool forward, Dictionary<TokenType, int> tokens)
         {
             int l = 1;
             while (l > 0) {
@@ -94,11 +77,11 @@ namespace ByteRibbon
                 switch (program[programPointer].Type) {
                     case TokenType.MoveRight:
                         // Move to next memory cell.
-                        next();
+                        memoryPointer++;
                         break;
                     case TokenType.MoveLeft:
                         // Move to previous memory cell.
-                        previous();
+                        memoryPointer--;
                         break;
                     case TokenType.Increment:
                         // Increment current memory cell.
@@ -116,7 +99,7 @@ namespace ByteRibbon
                             { TokenType.EndLoop, -1 }
                         };
                         if (memory[memoryPointer] == 0) {
-                            jump(true, startJumpValues);
+                            Jump(true, startJumpValues);
                         }
                         break;
                     case TokenType.EndLoop:
@@ -127,7 +110,7 @@ namespace ByteRibbon
                             { TokenType.EndLoop, 1 }
                         };
                         if (memory[memoryPointer] != 0) {
-                            jump(false, endJumpValues);
+                            Jump(false, endJumpValues);
                         }
                         break;
                     case TokenType.Output:
