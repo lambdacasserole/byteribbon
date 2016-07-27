@@ -47,7 +47,7 @@ namespace ByteRibbon
 
             // Initialize memory.
             memoryPointer = 0;
-            memory = new byte[1024];
+            memory = new byte[32768]; // 32 kilobytes will do.
         }
 
         /// <summary>
