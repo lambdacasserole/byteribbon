@@ -21,7 +21,6 @@ The following table is straight from [Wikipedia's table of Brainfuck commands](h
 | `,`         | Accept one byte of input, storing its value in the byte at the data pointer.                                                                                                      |
 | `[`         | If the byte at the data pointer is zero, then instead of moving the instruction pointer forward to the next command, jump it forward to the command after the matching ] command. |
 | `]`         | If the byte at the data pointer is nonzero, then instead of moving the instruction pointer forward to the next command, jump it back to the command after the matching [ command. |
-| `N/A`       | Denotes a single-line comment.                                                                                                                                                    |
 
 You're essentially manipulating a [Turing machine](https://en.wikipedia.org/wiki/Turing_machine) to produce output.
 
